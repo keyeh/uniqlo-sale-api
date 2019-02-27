@@ -1,0 +1,16 @@
+{
+  "name": "uniqlo-sale-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request-x-ray": "^0.1.4",
+    "x-ray": "git+ssh://git@github.com/keyeh/x-ray.git",
+    "x-ray-phantom": "^1.0.1"
+  }
+}
