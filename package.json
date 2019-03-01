@@ -1,12 +1,13 @@
 {
-  "name": "uniqlo-sale-scraper",
+  "name": "uniqlo-sale-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel --presets es2015 -d build/ src && node build/main.js",
-    "build": "babel --presets es2015 -d build/ src"
+    "build": "babel --presets es2015 -d build/ src",
+    "start": "npm run build && node build/main.js",
+    "deploy": "npm start && git add data.json -f && git checkout gh-pages && git commit -m 'Update' && git push"
   },
   "author": "",
   "license": "ISC",

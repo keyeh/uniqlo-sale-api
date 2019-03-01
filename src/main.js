@@ -1,4 +1,5 @@
 import xChrome from './xChrome';
+import xRequest from './xRequest';
 
 xChrome('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?ptid=men-sale',
 		'.product-tile',
@@ -15,4 +16,4 @@ xChrome('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?pt
 			}]),
 		}]
 	)
-	.write('results.json')
+	.write('data.json')
