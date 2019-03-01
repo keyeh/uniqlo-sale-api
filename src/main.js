@@ -53,6 +53,8 @@ xChrome('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?pt
 		[{
 			title: 'a.name-link | trim',
 			url: 'a@href',
+			originalPrice: '.product-standard-price',
+			salePrice: '.product-sales-price',
 			variants: xChrome('.swatch-list li', [{
 				name: 'img@data-thumb | extractVariantName',
 				url: 'a@href',
