@@ -12,9 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "request-x-ray": "^0.1.4",
-    "x-ray": "git+ssh://git@github.com/keyeh/x-ray.git",
-    "x-ray-chrome": "github:keyeh/x-ray-chrome",
-    "x-ray-phantom": "^1.0.1"
+    "x-ray": "^2.3.3",
+    "x-ray-chrome": "github:keyeh/x-ray-chrome"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
