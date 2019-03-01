@@ -12,6 +12,9 @@ const x = xRay({
 			height: 768
 		},
 		headless: false,
+		args: [
+			'--blink-settings=imagesEnabled=false', // Don't load images
+		],
 		cl: async (page, ctx) => {
 			await autoScroll(page);
 			await page.screenshot({
