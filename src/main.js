@@ -1,12 +1,13 @@
 import xRay from 'x-ray';
-import xRayChrome from 'x-ray-chrome';
-import autoScroll from './autoScroll';
 import filters from './filters'
+import chromeDriver from 'x-ray-chrome';
+import requestDriver from 'request-x-ray';
+import autoScroll from './autoScroll';
 
-const x = xRay({
+const xChrome = xRay({
 		filters
 	})
-	.driver(xRayChrome({
+	.driver(chromeDriver({
 		viewPort: {
 			width: 1366,
 			height: 768
@@ -34,27 +35,29 @@ const x = xRay({
 			})
 			await page.goto(ctx.url, navigationOptions);
 			await autoScroll(page);
-			// await page.screenshot({
-			// 	path: 'screenshot.jpg',
-			// 	fullPage: true
-			// });
+			await page.screenshot({
+				path: 'screenshot.jpg',
+				fullPage: true
+			});
 		}
 	}))
+
+const xRequest = xRay({
+		filters
+	}).driver(requestDriver())
 	.concurrency(5)
 	.throttle(5, 1000);
 
-
-
-x('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?ptid=men-sale',
+xChrome('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?ptid=men-sale',
 		'.product-tile',
 		[{
 			title: 'a.name-link | trim',
 			url: 'a@href',
-			variants: x('.swatch-list li', [{
+			variants: xChrome('.swatch-list li', [{
 				name: 'img@data-thumb | extractVariantName',
 				url: 'a@href',
 				thumbnail: 'img@data-thumb | extractThumbnailUrl',
-				stock: x('a@href | ajaxifyVariantUrl', ['select.variation-select option | trim | extractStock']),
+				// stock: xRequest('a@href | ajaxifyVariantUrl', ['select.variation-select option | trim | extractStock']),
 			}]),
 		}]
 	)
