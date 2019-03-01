@@ -22,13 +22,6 @@ export default {
         }
         return value + '&format=ajax';
     },
-    formatPaginationUrl: function (value) {
-        if (typeof value !== 'string') {
-            return value
-        }
-        console.log(value.replace(/\|/g, '%7C'))
-        return value.replace(/\|/g, '%7C')
-    },
     extractStock: function (value) {
         const OOS = ' - OUT OF STOCK -'
         if (typeof value !== 'string') {
