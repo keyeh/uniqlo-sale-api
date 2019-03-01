@@ -13,12 +13,11 @@
   "dependencies": {
     "request-x-ray": "^0.1.4",
     "x-ray": "git+ssh://git@github.com/keyeh/x-ray.git",
-    "x-ray-chrome": "^1.0.1",
+    "x-ray-chrome": "github:keyeh/x-ray-chrome",
     "x-ray-phantom": "^1.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "prettier": "1.16.4"
+    "babel-preset-es2015": "^6.24.1"
   }
 }

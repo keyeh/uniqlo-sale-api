@@ -15,18 +15,32 @@ const x = xRay({
 		args: [
 			'--blink-settings=imagesEnabled=false', // Don't load images
 		],
-		cl: async (page, ctx) => {
-			await autoScroll(page);
-			await page.screenshot({
-				path: 'screenshot.jpg',
-				fullPage: true
-			});
-		},
 		navigationOptions: {
 			timeout: 10000,
+		},
+		cl: async (page, ctx, navigationOptions) => {
+			await page.setRequestInterception(true);
+
+			page.on('request', (req) => {
+				if (req.url().includes(`/lib/jquery/jquery`) ||
+					req.url().endsWith(`/js/allinone.js`) ||
+					req.url().includes('uniqlo.com/us/en/men/sale') ||
+					req.url().includes('&format=page-element')
+				) {
+					req.continue()
+				} else {
+					req.abort()
+				}
+			})
+			await page.goto(ctx.url, navigationOptions);
+			await autoScroll(page);
+			// await page.screenshot({
+			// 	path: 'screenshot.jpg',
+			// 	fullPage: true
+			// });
 		}
 	}))
-	.concurrency(1)
+	.concurrency(5)
 	.throttle(5, 1000);
 
 
@@ -40,7 +54,7 @@ x('https://www.uniqlo.com/us/en/men/sale/30inch%7C31inch%7Cone-size%7Cs?ptid=men
 				name: 'img@data-thumb | extractVariantName',
 				url: 'a@href',
 				thumbnail: 'img@data-thumb | extractThumbnailUrl',
-				// stock: x('a@href | ajaxifyVariantUrl', ['select.variation-select option | trim | extractStock']),
+				stock: x('a@href | ajaxifyVariantUrl', ['select.variation-select option | trim | extractStock']),
 			}]),
 		}]
 	)
